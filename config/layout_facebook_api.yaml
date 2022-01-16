@@ -1,0 +1,139 @@
+facebook:
+  FB_DEFAULT_GRAPH_VERSION: 'v12.0'
+  graph_path: "https://graph.facebook.com/%s/%s/insights?fields=%s&breakdowns=%s&level=%s&access_token=%s&limit=%s&time_range={'since':'%s','until':'%s'}"
+  graph_path_attribution: "https://graph.facebook.com/%s/%s/insights?fields=%s&action_attribution_windows=%s&breakdowns=%s&level=%s&access_token=%s&limit=%s&time_range={'since':'%s','until':'%s'}"
+  graph_path_ads: "https://graph.facebook.com/%s/%s/ads?fields=%s&access_token=%s&limit=%s"
+  graph_path_ad_creatives: "https://graph.facebook.com/%s/%s?fields=%s&access_token=%s"
+  query:
+    level: ad
+    action_attribution_windows:
+      - 7d_click
+      - 1d_view
+    custom_conv_fields:
+      - name
+    fields:
+      - account_id
+      - campaign_id
+      - campaign_name
+      - adset_id
+      - adset_name
+      - ad_id
+      - ad_name
+      - impressions
+      - clicks
+      - spend
+      - reach
+      - inline_link_clicks
+      - conversions
+      - actions
+      - frequency
+      - attribution_setting
+      - optimization_goal
+    fields_videos_plays:
+      - account_id
+      - account_name
+      - campaign_id
+      - campaign_name
+      - adset_id
+      - adset_name
+      - ad_id
+      - ad_name
+      - impressions
+      - clicks
+      - spend
+      - reach
+      - inline_link_clicks
+      - conversions
+      - actions
+      - frequency
+      - attribution_setting
+      - optimization_goal
+      - video_play_actions
+      - video_p25_watched_actions
+      - video_p50_watched_actions
+      - video_p75_watched_actions
+      - video_p100_watched_actions
+    fields_unifin:
+      - campaign_name
+      - adset_name
+      - ad_name
+      - impressions
+      - clicks
+      - spend
+      - actions
+      - frequency
+      - video_p25_watched_actions
+      - video_p50_watched_actions
+      - video_p75_watched_actions
+      - video_p100_watched_actions
+    breakdowns:
+      - device_platform
+      - publisher_platform
+      - impression_device
+    breakdowns_platform_position:
+      - device_platform
+      - platform_position
+      - publisher_platform
+    breakdowns_no_imp_device:
+      - device_platform
+      - publisher_platform
+    breakdowns_hourly:
+      - hourly_stats_aggregated_by_advertiser_time_zone
+    fields_pg:
+      - campaign_id
+      - campaign_name
+      - adset_id
+      - adset_name
+      - ad_id
+      - ad_name
+      - impressions
+      - clicks
+      - spend
+      - reach
+      - inline_link_clicks
+    breakdowns_pg:
+      - device_platform
+      - publisher_platform
+      - impression_device
+    fields_ads:
+      - name
+      - id
+      - creative
+      - preview_shareable_link
+      - created_time
+      - account_id
+      - adset
+      - status
+    fields_ad_creatives:
+      - name
+      - id
+      - object_url
+    fields_v1:
+      - campaign_id
+      - campaign_name
+      - adset_id
+      - adset_name
+      - ad_id
+      - ad_name
+      - impressions
+      - clicks
+      - spend
+      - reach
+      - inline_link_clicks
+      - conversions
+      - actions
+      - unique_actions
+    breakdowns_by_country:
+      - country
+    breakdowns_by_country_region:
+      - country
+      - region
+    breakdowns_by_age_gender:
+      - age
+      - gender
+    breakdowns_by_region:
+      - region
+    breakdowns_by_age:
+      - age
+    breakdowns_by_gender:
+      - gender
