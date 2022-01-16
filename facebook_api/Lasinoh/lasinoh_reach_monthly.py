@@ -130,7 +130,7 @@ for account_name in accounts_list.keys():
             print('Prepare queries: ')
             print('- Delete queries')
 
-            delete_query_general = "DELETE FROM `{0}` WHERE account_id ={3} AND date between '{1}' and '{2}'"
+            delete_query_general = "DELETE FROM `{0}` WHERE account_id ={3} AND date_start between '{1}' and '{2}'"
             delete_query = delete_query_general.format(table_id, start_date,end_date,account_id)
 
             # Run delete queries
