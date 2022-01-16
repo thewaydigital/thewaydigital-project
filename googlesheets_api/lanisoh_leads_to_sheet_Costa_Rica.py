@@ -14,7 +14,7 @@ pd.options.display.float_format = '{:,.2f}'.format
 # load BQ credentials
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = (os.getcwd()+'/config/'+'spartan-cedar-337400-178c9ede4da3.json')
 client_bigquery = bigquery.Client()
-general_query = "SELECT * FROM `spartan-cedar-337400.google_sheets.lasinoh_subscribers_complete_table` WHERE (country_code != 'AR' AND country_code != 'BO' AND country_code != 'CL' AND country_code != 'CO' AND country_code != 'CR' AND country_code != 'EC' AND country_code != 'MX' AND country_code != 'PA' AND country_code != 'PE')"
+general_query = "SELECT * FROM `spartan-cedar-337400.google_sheets.lasinoh_subscribers_complete_table` WHERE country_code = 'CR'"
 general_query = general_query.format()  
 print(general_query)
 query_job = client_bigquery.query(general_query)
@@ -79,7 +79,7 @@ if not df.empty:
     # Connection to Google Sheets
     gc = pygsheets.authorize(service_file=os.getcwd()+'/config/'+'spartan-cedar-337400-178c9ede4da3.json')
     sh = gc.open_by_key('14qWAsAyCdFwe5bb-Qb5_MztvBM2-ID0gJIBi-hI_OVc')
-    wks = sh.worksheet_by_title("Leads General")
+    wks = sh.worksheet_by_title("Leads - CR")
 
     # Convert Dataframe to List
     df_list = df.values.tolist()
