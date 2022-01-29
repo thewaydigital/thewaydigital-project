@@ -118,9 +118,14 @@ for date in date_list:
                     try:
                         custom_conversion_value = actions_dict.get('offsite_conversion.custom.'+custom_conversion_id, 0)
                     except:
-                        custom_conversion_value = 0    
+                        custom_conversion_value = 0   
+                    try:
+                        custom_conversion_fb_pixel = actions_dict.get('offsite_conversion.fb_pixel_custom',0)
+                    except:
+                        custom_conversion_fb_pixel = 0
                 except:
                     custom_conversion_value = 0
+                    custom_conversion_fb_pixel = 0
 
                     ########################################################
                 if custom_conversion_value != 0:
@@ -136,16 +141,18 @@ for date in date_list:
                         'device_platform':[device_platform],
                         'custom_conversion_id': [custom_conversion_id],
                         'custom_conversion_name': [custom_conversion_name],
-                        'custom_conversion_value':[custom_conversion_value]
+                        'custom_conversion_value':[custom_conversion_value],
+                        'custom_conversion_fb_pixel':[custom_conversion_fb_pixel]
                     }
                     df_temp = pd.DataFrame(dict_temp)
                     df = pd.concat([df, df_temp])
-
+                    
                 #########################
+    
+        
 
         #info
         df.info()
-
         if not df.empty:
             # set date column
             df['date'] = df['date_start']
