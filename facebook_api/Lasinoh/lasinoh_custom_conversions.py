@@ -155,7 +155,8 @@ for date in date_list:
             #################################################################
             # Bigquery processing
             # load BQ credentials
-            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = (os.getcwd()+'/config/'+'ldm-automation-95a6eaa18f84.json')
+            os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = (os.getcwd()+'/config/'+'spartan-cedar-337400-178c9ede4da3.json')
+
             client = bigquery.Client()
             table_id = 'spartan-cedar-337400.facebook_insights.fb_custom_conversions'
 
