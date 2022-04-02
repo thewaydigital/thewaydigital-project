@@ -119,12 +119,14 @@ for date in date_list:
                         name: action.get('value')
                     }
                     actions_dict.update(dict_s)
+                """
                 for thruplays in item.get('video_play_actions'):
                     name = thruplays.get('action_type')
                     dict_x ={
                         name: thruplays.get('value')
                     }
                     thruplays_dict.update(dict_x)
+                """
                 # Assign Value to Each Action Variable
                 try:
                     post_save = actions_dict.get('onsite_conversion.post_save', 0)
@@ -170,11 +172,12 @@ for date in date_list:
                     video_view = actions_dict.get('video_view', 0)
                 except :
                     video_view = 0
-                
+                """ 
                 try:
                     video_play_actions = thruplays_dict.get('video_view', 0)
                 except :
                     video_play_actions = 0
+                """
                 try:
                     custom_conversion_fb_pixel = actions_dict.get('offsite_conversion.fb_pixel_custom',0)
                 except:

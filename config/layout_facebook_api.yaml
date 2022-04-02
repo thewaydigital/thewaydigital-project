@@ -1,5 +1,5 @@
 facebook:
-  FB_DEFAULT_GRAPH_VERSION: 'v12.0'
+  FB_DEFAULT_GRAPH_VERSION: 'v13.0'
   graph_path: "https://graph.facebook.com/%s/%s/insights?fields=%s&breakdowns=%s&level=%s&access_token=%s&limit=%s&time_range={'since':'%s','until':'%s'}"
   graph_path_attribution: "https://graph.facebook.com/%s/%s/insights?fields=%s&action_attribution_windows=%s&breakdowns=%s&level=%s&access_token=%s&limit=%s&time_range={'since':'%s','until':'%s'}"
   graph_path_ads: "https://graph.facebook.com/%s/%s/ads?fields=%s&access_token=%s&limit=%s"
