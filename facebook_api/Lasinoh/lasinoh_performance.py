@@ -194,7 +194,7 @@ for date in date_list:
                 fb_mobile_activate_app = 0
                 mobile_app_install = 0
                 video_view = 0
-                video_play_actions = 0 
+                #video_play_actions = 0 
                 custom_conversion_fb_pixel = 0 
 
             ########################################################
@@ -226,7 +226,7 @@ for date in date_list:
                 'fb_mobile_activate_app': [fb_mobile_activate_app],
                 'mobile_app_install': [mobile_app_install],
                 'video_view': [video_view],
-                'video_play_actions':[video_play_actions],
+                #'video_play_actions':[video_play_actions],
                 'custom_conversion_fb_pixel':[custom_conversion_fb_pixel]
                 #'video_views_25_watched':[video_views_25_watched],
                 #'video_views_50_watched':[video_views_50_watched],
