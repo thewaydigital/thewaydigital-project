@@ -29,7 +29,7 @@ end_date =  start_date.replace(day = calendar.monthrange(start_date.year, start_
 
 accounts_list = {'Lasinoh_Argentina':'act_167239824878114','Lasinoh_Bolivia':'act_115849660425891','Lasinoh_Chile':'act_176237457634349',
 'Lasinoh_Colombia':'act_1553612921694258','Lasinoh_Costa_Rica':'act_2632858513596871','Lasinoh_Ecuador':'act_2749994491981998',
-'Lasinoh_Mexico':'act_410286810085364','Lasinoh_Panama':'act_253359839678017','Lasinoh_Peru':'act_694121314617272'}
+'Lasinoh_Mexico':'act_410286810085364','Lasinoh_Panama':'act_253359839678017','Lasinoh_Peru':'act_694121314617272','Lasinoh_Latam':'act_881115419238511'}
 
 #Facebook API Tokens
 my_access_token = FB_ACCESS_TOKEN

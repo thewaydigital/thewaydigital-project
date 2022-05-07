@@ -25,9 +25,7 @@ pd.options.display.float_format = '{:,.2f}'.format
 start_date, end_date = set_start_end_date(1)
 date_list = set_date_list(start_date,end_date)
 
-accounts_list = {'Lasinoh_Argentina':'act_167239824878114','Lasinoh_Bolivia':'act_115849660425891','Lasinoh_Chile':'act_176237457634349',
-'Lasinoh_Colombia':'act_1553612921694258','Lasinoh_Costa_Rica':'act_2632858513596871','Lasinoh_Ecuador':'act_2749994491981998',
-'Lasinoh_Mexico':'act_410286810085364','Lasinoh_Panama':'act_253359839678017','Lasinoh_Peru':'act_694121314617272','Lasinoh_Latam':'act_881115419238511'}
+accounts_list = {'Lasinoh_Latam':'act_881115419238511'}
 
 #Facebook API Tokens
 my_access_token = FB_ACCESS_TOKEN
@@ -42,7 +40,6 @@ breakdowns = config.get('facebook').get('query').get('breakdowns_platform_positi
 level = config.get('facebook').get('query').get('level')
 
 # Retrieve data each day in date-list
-
 for date in date_list:
     for account_name in accounts_list.keys():
         print('---- Account Name: ', account_name)
@@ -56,7 +53,7 @@ for date in date_list:
             'level': level,
             #'filtering': [],
             'breakdowns': breakdowns,
-            'time_range': {'since':f"{date}",'until':f"{date}"}
+            'time_range': {'since':f"{date}",'until':f"{date}"},
         }
 
         async_job = my_account.get_insights_async( fields=fields, params=params) 
@@ -87,13 +84,26 @@ for date in date_list:
         print('------------------------')
 
         for item in dataFromAPI:
+            account_id = item.get('account_id')
+            account_name = item.get('account_name')
+            campaign_id = item.get('campaign_id')
+            campaign_name = item.get('campaign_name')
+            adset_id = item.get('adset_id')
+            adset_name = item.get('adset_name')
+            ad_id = item.get('ad_id')
+            ad_name = item.get('ad_name')
+            impressions = item.get('impressions')
+            clicks = item.get('clicks')
+            spend = item.get('spend')
+            inline_link_clicks = item.get('inline_link_clicks')
             date_start = item.get('date_start')
             date_stop = item.get('date_stop')
-            account_id = item.get('account_id')
-            campaign_id = item.get('campaign_id')
-            adset_id = item.get('adset_id')
-            ad_id = item.get('ad_id')
-
+            device_platform = item.get('device_platform')
+            platform_position = item.get('platform_position')
+            publisher_platform = item.get('publisher_platform')
+            #video_views_25_watched = item.get('video_p25_watched_actions') 
+            #video_views_50_watched = item.get('video_p50_watched_actions') 
+            #video_views_100_watched = item.get('video_p100_watched_actions') 
 
             ########################################################
             # Actions
@@ -107,7 +117,65 @@ for date in date_list:
                         name: action.get('value')
                     }
                     actions_dict.update(dict_s)
-                # Assign Value to Each Action Variable            
+                """
+                for thruplays in item.get('video_play_actions'):
+                    name = thruplays.get('action_type')
+                    dict_x ={
+                        name: thruplays.get('value')
+                    }
+                    thruplays_dict.update(dict_x)
+                """
+                # Assign Value to Each Action Variable
+                try:
+                    post_save = actions_dict.get('onsite_conversion.post_save', 0)
+                except:
+                    post_save = 0
+              
+                try:
+                    link_click = actions_dict.get('link_click', 0)
+                except:
+                    link_click = 0
+                
+                try:
+                    post_reaction = actions_dict.get('post_reaction', 0)
+                except:
+                    post_reaction = 0
+
+                try:
+                    post_engagement = actions_dict.get('post_engagement', 0)
+                except:
+                    post_engagement = 0
+
+                try:
+                    page_engagement = actions_dict.get('page_engagement', 0)
+                except:
+                    page_engagement = 0
+
+                try:
+                    leads = actions_dict.get('offsite_conversion.fb_pixel_lead', 0)
+                except :
+                    leads = 0
+
+                try:
+                    fb_mobile_activate_app = actions_dict.get('app_custom_event.fb_mobile_activate_app', 0)
+                except :
+                    fb_mobile_activate_app = 0
+
+                try:
+                    mobile_app_install = actions_dict.get('mobile_app_install', 0)
+                except :
+                    mobile_app_install = 0
+
+                try:
+                    video_view = actions_dict.get('video_view', 0)
+                except :
+                    video_view = 0
+                """ 
+                try:
+                    video_play_actions = thruplays_dict.get('video_view', 0)
+                except :
+                    video_play_actions = 0
+                """
                 try:
                     custom_conversion_fb_pixel = actions_dict.get('offsite_conversion.fb_pixel_custom',0)
                 except:
@@ -115,18 +183,52 @@ for date in date_list:
 
             except :
                 # No conversions
+                post_save = 0
+                link_click = 0
+                post_reaction = 0
+                post_engagement = 0
+                page_engagement = 0
+                leads = 0
+                fb_mobile_activate_app = 0
+                mobile_app_install = 0
+                video_view = 0
+                video_play_actions = 0 
                 custom_conversion_fb_pixel = 0 
 
             ########################################################
 
             dict_temp = {
+                'account_id':[account_id],
+                'account_name':[account_name],
+                'campaign_id': [campaign_id],
+                'campaign_name': [campaign_name],
+                'adset_id': [adset_id],
+                'adset_name': [adset_name],
+                'ad_id': [ad_id],
+                'ad_name': [ad_name],
+                'impressions': [impressions],
+                'clicks': [clicks],
+                'spend': [spend],
+                'inline_link_clicks': [inline_link_clicks],
                 'date_start': [date_start],
                 'date_stop': [date_stop],
-                'account_id':[account_id],
-                'campaign_id': [campaign_id],
-                'adset_id': [adset_id],
-                'ad_id': [ad_id],
+                'device_platform': [device_platform],
+                'platform_position': [platform_position],
+                'publisher_platform': [publisher_platform],
+                'post_save': [post_save],
+                'link_click': [link_click],
+                'post_reaction': [post_reaction],
+                'post_engagement': [post_engagement],
+                'page_engagement': [page_engagement],
+                'leads': [leads],
+                'fb_mobile_activate_app': [fb_mobile_activate_app],
+                'mobile_app_install': [mobile_app_install],
+                'video_view': [video_view],
+                'video_play_actions':[video_play_actions],
                 'custom_conversion_fb_pixel':[custom_conversion_fb_pixel]
+                #'video_views_25_watched':[video_views_25_watched],
+                #'video_views_50_watched':[video_views_50_watched],
+                #'video_views_100_watched':[video_views_100_watched]
             }
             df_temp = pd.DataFrame(dict_temp)
             df = pd.concat([df, df_temp])
@@ -135,7 +237,8 @@ for date in date_list:
 
         #info
         df.info()
-      
+        #df.to_csv('lasinoh_argentina.csv')
+         
         if not df.empty:
             # set date column
             df['date'] = df['date_start']
@@ -147,7 +250,7 @@ for date in date_list:
             # load BQ credentials
             os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = (os.getcwd()+'/config/'+'spartan-cedar-337400-178c9ede4da3.json')
             client = bigquery.Client()
-            table_id = 'spartan-cedar-337400.facebook_insights.lasinoh_custom_conversion_fb_pixel'
+            table_id = 'spartan-cedar-337400.facebook_insights.lasinoh_performance'
 
             # Prepare queries
             print('Prepare queries: ')
@@ -191,3 +294,4 @@ for date in date_list:
         request_params = {'access_token': my_access_token}
         del_report = requests.delete(request_url,data=request_params)
         print(del_report)
+        
